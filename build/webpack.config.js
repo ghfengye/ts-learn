@@ -1,8 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-    entry: '../src/index.ts', // 输入
+    entry: path.resolve(__dirname,'../src/index.ts'), // 输入
     output: {
         filename: 'main.js' // 输出
     },
@@ -22,15 +23,14 @@ module.exports = {
         stats: 'errors-only', // 显示日志，只在错误发生时输出
         compress: false,
         host: 'localhost',
-        post: 8080
+        port: 8080
     },
     plugins: [
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['./dist']
         }),
         new HtmlWebpackPlugin({
-            template: '../src/templete/index.html'
+            template: path.resolve(__dirname,'../src/templete/index.html')
         })
     ]
-
 }
